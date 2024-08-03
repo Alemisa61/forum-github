@@ -15,7 +15,7 @@ const getAllQuestions = async (req, res) => {
 };
 
 
-const getSigleQuestion = async (req, res) => {
+const getSingleQuestion = async (req, res) => {
   
 };
-module.exports = { getAllQuestions, getSigleQuestion, postQuestion };
+module.exports = { getAllQuestions, getSingleQuestion, postQuestion };
