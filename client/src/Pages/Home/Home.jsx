@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import SignUp from "./SignUp";
-import SignIn from "./SignIn";
+import SignUp from "../SighUp/SignUp";
+import SignIn from "../SignIn/SignIn";
 import styles from "./home.module.css"; // Import CSS module for styling
 import { axiosInstance } from "../../API/axios";
 

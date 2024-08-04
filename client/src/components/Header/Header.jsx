@@ -1,46 +1,58 @@
 import React from "react";
-import styles from "./header.module.css";
-import { axiosInstance } from "../../API/axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../AuthContext/AuthContext"; // Adjust the path as needed
+import "./header.css";
+import LOGO from "../../assets/evangadi-logo-5fea54cc.png";
+import NavLinks from "./NavLinks";
+
 
 const Header = () => {
-  const { isAuthenticated, handleLogout } = useContext(AuthContext);
-  const navigate = useNavigate();
-
-  const handleLogoutClick = () => {
-    handleLogout();
-    navigate("/login");
-  };
-
   return (
-    <header>
-      <div className="logo">
-        <Link to="/">Evangadi Forum</Link>
+    <>
+      <div>
+        <nav className="navbar navbar-light bg-light py-4">
+          <div className="container navbar-container">
+            <Link className="navbar-brand" to="">
+              <img src={LOGO} alt="" />
+            </Link>
+            <div className="d-lg-none d-flex align-items-center">
+              <button
+                className="navbar-toggler"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar"
+              >
+                <span className="navbar-toggler-icon"></span>
+              </button>
+            </div>
+            <div className="d-none d-lg-flex align-items-center">
+              <NavLinks />
+            </div>
+          </div>
+        </nav>
+        <div
+          className="d-lg-none offcanvas offcanvas-end"
+          tabIndex="-1"
+          id="offcanvasNavbar"
+          aria-labelledby="offcanvasNavbarLabel"
+        >
+          <div className="offcanvas-header">
+            <div className="d-flex w-100 justify-content-start">
+              <button
+                type="button"
+                className="btn-close text-reset"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+          </div>
+          <div className="offcanvas-body">
+            <NavLinks />
+          </div>
+        </div>
       </div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/">How It Works</Link>
-          </li>
-          {isAuthenticated ? (
-            <li>
-              <button onClick={handleLogoutClick}>Logout</button>
-            </li>
-          ) : (
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-          )}
-        </ul>
-      </nav>
-    </header>
+    </>
   );
 };
 
