@@ -16,21 +16,15 @@ const register = async (req, res) => {
   // Create new user
 };
 
+
 const login = async (req, res) => {
-
-  // Validate request body
-
-  // Check if user exists
-
-  // Compare provided password with hashed password
-
-  // Generate JWT token
-
-  // Send successful response with token
-
   const { email, password } = req.body;
+
   if (!email || !password) {
-    return res.status(401).json({ error: "Email and password are required" });
+    return res.status(400).json({
+      error: "Bad Request",
+      message: "Please provide all required fields",
+    });
   }
 
   try {
@@ -40,28 +34,37 @@ const login = async (req, res) => {
     );
 
     if (user.length === 0) {
-      return res.status(401).json({ error: "Invalid credentials" });
+      return res.status(401).json({
+        error: "Unauthorized",
+        message: "Invalid credentials",
+      });
     }
 
     const isMatch = await bcrypt.compare(password, user[0].password);
     if (isMatch) {
       const token = jwt.sign(
         { username: user[0].username, userid: user[0].userid },
-        process.env.JWT_SECRET
+        process.env.JWT_SECRET,
+        { expiresIn: "1h" } // Token expires in 1 hour
       );
-      res.status(HttpStatus.OK).json({
+      res.status(200).json({
         message: "User login successful",
         token: token,
-        username: user[0].username,
       });
     } else {
-      return res.status(401).json({ error: "Invalid password" });
+      return res
+        .status(401)
+        .json({ error: "Unauthorized", message: "Invalid credentials" });
     }
   } catch (error) {
-    console.error("Error:", error);
-    return res.status(500).json({ error: "Server Error" });
+    // console.error("Error:", error);
+    return res.status(500).json({
+      error: "Internal Server Error",
+      message: "An unexpected error occurred",
+    });
   }
 };
+
 
 const checkUser = async (req, res) => {
 
