@@ -35,7 +35,7 @@ const NavLinks = () => {
             Log Out
           </button>
         ) : (
-          <Link to="/user/login" className="btn nav-actions btn-custom-width">
+          <Link to="/login" className="btn nav-actions btn-custom-width">
             Log In
           </Link>
         )}
