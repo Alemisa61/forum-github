@@ -4,7 +4,7 @@ const router = require("express").Router();
 const { getAnswers, postAnswer } = require("../controllers/answerController");
 
 //auth middleware
-const authMiddleware = require("../middlewares/authMiddleware");
+const {authMiddleware} = require("../middlewares/authMiddleware");
 
 //Get answers for a single question route
 router.get("/:question_id", authMiddleware, getAnswers);

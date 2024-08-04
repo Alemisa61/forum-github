@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
-import styles from "./signIn.module.css"; // Import CSS module for styling
+import styles from "./signIn.module.css";
 import { axiosInstance } from "../../API/axios";
-import Layout from "../../components/Layout/Layout";
+
 
 const SignIn = () => {
-  return <Layout>SignIn</Layout>;
+  return <>SignIn</>;
 };
 
 export default SignIn;

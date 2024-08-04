@@ -17,7 +17,7 @@ app.use(express.json());
 app.use("/api/user", userRoutes);
 
 // Question routes middleware
-app.use("/api/question", questionRoutes);
+app.use("/api/questions", questionRoutes);
 
 // Answers routes middleware
 app.use("/api/answer", answerRoutes);

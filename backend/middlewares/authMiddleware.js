@@ -13,7 +13,7 @@ const authMiddleware = async (req, res, next) => {
       .json({ message: "Authentication invalid" });
   }
 
-  // This line splits the Authorization header value by spaces and extracts the actual JWT token, which is the second part of the split result.
+
   const jwtToken = token.split(" ")[1];
   try {
     const { username, userid } = jwt.verify(jwtToken, VITE_JWT_SECRET);
@@ -26,4 +26,4 @@ const authMiddleware = async (req, res, next) => {
   }
 };
 
-module.exports = authMiddleware;
+module.exports = {authMiddleware};
