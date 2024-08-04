@@ -10,7 +10,7 @@ const NavLinks = () => {
 
    const handleLogoutClick = () => {
      handleLogout();
-     navigate("/user/login");
+     navigate("/login");
    };
   return (
     <>
