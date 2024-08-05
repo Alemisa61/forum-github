@@ -1,16 +1,16 @@
-const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
 
 //answer controllers
-const { getAnswers, postAnswer } = require("../controllers/answerController");
+const { postAnswer } = require("../controllers/answerController");
 
 //auth middleware
-const {authMiddleware} = require("../middlewares/authMiddleware");
+const authMiddleware = require("../middlewares/authMiddleware");
 
 //Get answers for a single question route
-router.get("/:question_id", authMiddleware, getAnswers);
+// router.get("/:question_id", authMiddleware, getAnswers);
 
 //Post answer for a single question route
-router.post("/:question_id",authMiddleware, postAnswer);
-
+router.post("/:question_id", authMiddleware, postAnswer);
 
 module.exports = router;
