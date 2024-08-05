@@ -3,28 +3,28 @@ const dbConnection = require("../dbConfig");
 
 const { StatusCodes } = require("http-status-codes");
 
-// const getAnswers = async (req, res) => {
-//   // Validate question_id
+const getAnswers = async (req, res) => {
+  // Validate question_id
 
-//   // Query to fetch answers for the specified question_id
+  // Query to fetch answers for the specified question_id
 
-//   // Check if any answers were found
+  // Check if any answers were found
 
-//   // Send successful response with answers
-// };
+  // Send successful response with answers
+};
 
 const postAnswer = async (req, res) => {
   // Get answer from body
   const { answer } = req.body;
   // Get question_id from URL parameters
-  const { questionid } = req.params;
+  const { question_id } = req.params;
 
   // retrieve user info received from authentication middleware
-  const userid = req.user ? req.user.userId : null;
+  const user_name = req.user ? req.user.username : null;
   // Validate input
   if (
-    questionid == null ||
-    isNaN(questionid) ||
+    question_id == null ||
+    isNaN(question_id) ||
     !answer ||
     typeof answer !== "string"
   ) {
@@ -45,8 +45,8 @@ const postAnswer = async (req, res) => {
     const [result] = await dbConnection
       .promise()
       .execute(
-        "INSERT INTO answers (content, questionId, userId) VALUES (?, ?, ?)",
-        [answer, questionid, userid]
+        "INSERT INTO answers (content, question_id, user_name) VALUES (?, ?, ?)",
+        [answer, question_id, user_name]
       );
 
     // Check if the insertion was successful
@@ -67,4 +67,4 @@ const postAnswer = async (req, res) => {
   }
 };
 
-module.exports = { postAnswer };
+module.exports = { postAnswer, getAnswers };
