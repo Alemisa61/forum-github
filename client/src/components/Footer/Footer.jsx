@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './footer.module.css'
+import './footer.css'
 import { BiLogoFacebookCircle } from "react-icons/bi";
 import { AiFillInstagram } from "react-icons/ai";
 import { AiFillYoutube } from "react-icons/ai";
