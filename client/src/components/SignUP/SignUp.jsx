@@ -61,7 +61,7 @@ function SignUp() {
     }
     try {
       // Use the fetch API to send a HTTP request to the server.
-      const response = await fetch("http://localhost:5500/api/users/signup", {
+      const response = await fetch("http://localhost:5500/api/user/register", {
         // Specify that this request will use the POST method, which is used to send data to the server to register the user.
         method: "POST",
         // Set the Content-Type header to "application/json" to indicate that the request body contains JSON data.
@@ -96,7 +96,7 @@ function SignUp() {
           <h3 className={classes.join_login}>Join the network</h3>
           <p className={classes.upper_signin_button}>
             Already have an account?{" "}
-            <Link to="https://www.evangadi.com/login">Sign in</Link>
+            <Link to="/login">Sign in</Link>
           </p>
         </div>
         <form className={classes.sign_up_form} onSubmit={handleSubmit}>
@@ -150,14 +150,14 @@ function SignUp() {
             <p small className={classes.signin_button}>
               I agree to the
               <Link
-                to="https://www.evangadi.com/legal/privacy/"
+                to="/"
                 target="_blank"
               >
                 {" "}
                 privacy policy
               </Link>{" "}
               and
-              <Link to="https://www.evangadi.com/legal/terms/" target="_blank">
+              <Link to="/" target="_blank">
                 {" "}
                 terms of service
               </Link>
@@ -168,7 +168,7 @@ function SignUp() {
           </button>
         </form>
         <p className={classes.lower_account_button}>
-          <Link to="https://www.evangadi.com/login">
+          <Link to="/login">
             Already have an account
           </Link>
         </p>
