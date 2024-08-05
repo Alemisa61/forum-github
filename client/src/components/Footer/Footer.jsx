@@ -1,67 +1,94 @@
-import React from "react";
-import evangadiLogo from "../../assets/evangadi-logo-5fea54cc.png";
-import classes from "./footer.module.css";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import YouTubeIcon from "@mui/icons-material/YouTube";
+import React from 'react'
+import './footer.css'
+import { BiLogoFacebookCircle } from "react-icons/bi";
+import { AiFillInstagram } from "react-icons/ai";
+import { AiFillYoutube } from "react-icons/ai";
+import logo from '../../assets/evangadi-logo-footer-f73bca57.png'
 
-const Footer = () => (
-  <footer>
-    <div className="class.footer-content">
-      <div className="class.footer-logo-container">
-        <img
-          src={evangadiLogo}
-          alt="Evangadi Networks Logo"
-          className="class.footer-logo"
-        />
-        <div className="class.social-media-container">
-          <a
-            href="https://www.facebook.com/evangadi"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FacebookIcon className="class.social-media-icon" />
-          </a>
-          <a
-            href="https://www.instagram.com/evangadi"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <InstagramIcon className="class.social-media-icon" />
-          </a>
-          <a
-            href="https://www.youtube.com/evangadi"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <YouTubeIcon className="class.social-media-icon" />
-          </a>
+const Footer = () => {
+  return (
+    <footer className="footer_class">
+      <div className="container px-sm-4">
+        <div className="row">
+          <div className="col-12 col-md-4">
+            <div className="logo ">
+              <img src={logo} alt="" />
+            </div>
+            <div className="d-flex ">
+              <div className="social">
+                <a
+                  href=""
+                  style={{
+                    backgroundColor: "#3B455A",
+                    borderRadius: "50%",
+                    padding: "10px",
+                    display: "inline-block",
+                    color: "white",
+                  }}
+                >
+                  <BiLogoFacebookCircle size={30} />
+                </a>
+              </div>
+              <div className="social">
+                <a
+                  href=""
+                  style={{
+                    backgroundColor: "#3B455A",
+                    borderRadius: "50%",
+                    padding: "10px",
+                    display: "inline-block",
+                  }}
+                >
+                  <AiFillInstagram size={30} style={{ color: "white" }} />
+                </a>
+              </div>
+              <div className="social">
+                <a
+                  href=""
+                  style={{
+                    backgroundColor: "#3B455A",
+                    borderRadius: "50%",
+                    padding: "10px",
+                    display: "inline-block",
+                  }}
+                >
+                  <AiFillYoutube size={30} style={{ color: "white" }} />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="col-12 col-md-4 footer-links">
+            <h5>Useful Link</h5>
+            <ul className="row list-unstyled">
+              <li className="ps-3 small">
+                <a href="" className="text-decoration-none">
+                  How it works
+                </a>
+              </li>
+              <li className="ps-3 small">
+                <a href="" className="text-decoration-none">
+                  Terms of Service
+                </a>
+              </li>
+              <li className="ps-3 small">
+                <a href="" className="text-decoration-none">
+                  Privacy policy
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div className="col-12 col-md-4 footer-links">
+            <h5>Contact Info</h5>
+            <ul className="row list-unstyled">
+              <li className="ps-3 small">Evangadi Networks</li>
+              <li className="ps-3 small">support@evangadi.com</li>
+              <li className="ps-3 small">+1-202-386-2702</li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div className="class.footer-column">
-        <h4>Useful Links</h4>
-        <ul>
-          <li>
-            <a href="#how-it-works">How it Works</a>
-          </li>
-          <li>
-            <a href="#terms-of-use">Terms of Use</a>
-          </li>
-        </ul>
-      </div>
-      <div className="class.footer-column">
-        <h4>Contact Info</h4>
-        <ul>
-          <li>Evangadi Networks</li>
-          <li>
-            <a href="mailto:support@evangadi.com">support@evangadi.com</a>
-          </li>
-          <li>+1-202-386-2702</li>
-        </ul>
-      </div>
-    </div>
-    <p>&copy; 2024 Evangadi Networks</p>
-  </footer>
-);
+    </footer>
+  );
+}
 
 export default Footer;
