@@ -1,0 +1,131 @@
+/* General reset and box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure the root element and main container take up full height */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+/* Main content should expand to take up available space */
+main {
+  flex: 1;
+  background-color: white; /* White background for the main content */
+}
+
+/* Footer styles */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.footer-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-logo {
+  height: 30px; /* Adjust the height as needed */
+  margin-bottom: 0.5rem;
+  margin-left: 7rem;
+}
+
+.social-media-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem; /* Add margin to create space between the logo and social icons */
+  margin-left: 10rem;
+}
+
+.social-media-icon {
+  color: white;
+  font-size: 30px; /* Adjust the size as needed */
+}
+
+.footer-columns {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.footer-column {
+  flex: 1;
+  padding: 0 12rem;
+  text-align: left; /* Align text to the left */
+}
+
+.footer-column h4 {
+  margin-bottom: 0.5rem;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-column ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-column ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-columns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-column {
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  .social-media-container {
+    justify-content: center;
+  }
+}
