@@ -21,7 +21,7 @@ function SignUp() {
     password: false,
   });
   // Initialize navigation hook for redirecting users after form submission.
-  useNavigate();
+  const navigate = useNavigate();
   // Create a reference for the following input fields, initialized to null to be used for accessing a DOM element.
   const userNameDom = useRef(null);
   const firstNameDom = useRef(null);

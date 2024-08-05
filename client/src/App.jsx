@@ -7,7 +7,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import HomePage from "./Pages/Home/Home";
 import AnswerPage from "./Pages/Answer/Answer";
 import LoginPage from "./Pages/SignIn/SignIn";
-import SignUpPage from "./Pages/SighUp/SignUp";
+import SignUpPage from "./Pages/SighUp/SignUpPage";
 import QuestionPage from "./Pages/Question/Question";
 import Layout from "./components/Layout/Layout";
 
