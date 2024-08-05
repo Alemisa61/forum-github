@@ -5,14 +5,14 @@ const user = `CREATE TABLE users(
     lastname VARCHAR(20) NOT NULL,
     email VARCHAR(40) NOT NULL,
     password VARCHAR(100) NOT NULL,
-    PRIMARY KEY(userid)
+    PRIMARY KEY(userid,user_name)
 );`;
 
 const questions = `CREATE TABLE questions(
     id INT(20) NOT NULL AUTO_INCREMENT,
     question_id VARCHAR(100) NOT NULL UNIQUE,
-    user_name INT(20) NOT NULL,
-    created_at VARCHAR NOT NULL
+    user_name VARCHAR(20) NOT NULL,
+    created_at VARCHAR(20) NOT NULL,
     title VARCHAR(50) NOT NULL,
     description VARCHAR(200) NOT NULL,
     tag VARCHAR(20),
@@ -21,11 +21,11 @@ const questions = `CREATE TABLE questions(
 );`;
 
 const answers = `CREATE TABLE answers(
-    answer_id VARCHAR(20) NOT NULL AUTO_INCREMENT,
+    answer_id INT(20) NOT NULL AUTO_INCREMENT,
     user_name INT(20) NOT NULL,
     question_id VARCHAR(100) NOT NULL,
    content VARCHAR(200) NOT NULL,
-   created_at VARCHAR NOT NULL
+   created_at VARCHAR(20) NOT NULL,
     PRIMARY KEY(answer_id),
     FOREIGN KEY(question_id) REFERENCES questions (question_id),
     FOREIGN KEY(user_name) REFERENCES users (username) 
