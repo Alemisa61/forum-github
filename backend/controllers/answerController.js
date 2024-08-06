@@ -4,13 +4,38 @@ const dbConnection = require("../dbConfig");
 const { StatusCodes } = require("http-status-codes");
 
 const getAnswers = async (req, res) => {
+
+  const { question_id } = req.params;
+
   // Validate question_id
+  if (!question_id) {
+    return res.status(StatusCodes.NOT_FOUND).json({error:"Not Found",message:"The requested question could not be found."})
+  }
 
-  // Query to fetch answers for the specified question_id
+  try {
+    // Query to fetch answers for the specified question_id
+    const answers = await dbConnection.query(
+      "SELECT answer_id, content, user_name, created_at FROM answers WHERE question_id = ?",
+      [question_id]
+    );
 
-  // Check if any answers were found
+    // Construct the response format
+    const formattedAnswers = answers.map((answer) => ({
+      answer_id: answer.answer_id,
+      content: answer.content,
+      user_name: answer.user_name,
+      created_at: answer.created_at,
+    }));
 
-  // Send successful response with answers
+    // Send successful response with answers
+    res.status(StatusCodes.OK).json({ answers: formattedAnswers });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      error: "Internal Server Error",
+      message: "An unexpected error occurred.",
+    });
+  }
 };
 
 const postAnswer = async (req, res) => {
