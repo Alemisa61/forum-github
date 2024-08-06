@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./signUp.module.css";
+import { axiosInstance } from "../../API/axios";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -61,7 +62,7 @@ function SignUp() {
     }
     try {
       // Use the fetch API to send a HTTP request to the server.
-      const response = await fetch("http://localhost:5500/api/user/register", {
+      const response = await axiosInstance.post("/api/user/register", {
         // Specify that this request will use the POST method, which is used to send data to the server to register the user.
         method: "POST",
         // Set the Content-Type header to "application/json" to indicate that the request body contains JSON data.

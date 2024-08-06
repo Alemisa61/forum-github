@@ -3,15 +3,21 @@ const dbConnection = require("./dbConfig");
 require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT;
+const cors = require("cors");
 
 // Import routes
 const userRoutes = require("./routes/userRoute");
 const answerRoutes = require("./routes/answerRoute");
 const questionRoutes = require("./routes/questionRoute");
 
-
 // JSON middleware to extract JSON data
 app.use(express.json());
+const corsOptions = {
+  origin: "http://localhost:5173", // Replace with the allowed origin
+};
+
+app.use(cors(corsOptions));
+
 
 //user routes middleware file
 app.use("/api/user", userRoutes);

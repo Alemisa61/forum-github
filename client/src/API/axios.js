@@ -1,7 +1,9 @@
+// axiosConfig.js
 import axios from "axios";
-const PORT = import.meta.env.PORT
-const axiosInstance = axios.create({
-  baseURL: `http://localhost:${PORT}`,
-});
 
-export { axiosInstance };
+export const axiosInstance = axios.create({
+  baseURL: `http://localhost:7500`,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});

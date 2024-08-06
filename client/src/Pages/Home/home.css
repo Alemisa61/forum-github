@@ -1,32 +1,24 @@
-.questions_section{
-background-color: rgb(250, 250, 250);
-padding-top: 80px;
-padding-bottom: 50px;
-}
-
-.username{
-  font-family: cursive;
-  margin: 10px 0px 0px 15px;
-  letter-spacing: 2px;
-  color: rgb(1, 45, 102);
-}
 .question_title {
     width: 95%;
     margin: 15px auto;
     font-family: cursive;
+  color: black;
+  text-decoration: none;
 }
-.next_arrow{
+
+.next_arrow {
   font-size: 2.5rem;
   position: absolute;
   top: 20%;
   transition: 0.5s;
 }
-.welcome_message{
+
+.welcome_message {
   font-size: 1.1rem;
   font-family: cursive;
 }
 
-.welcome_message span{
+.welcome_message span {
   color: rgb(254, 128, 130);
   font-weight: 900;
   font-size: 1.3rem;
@@ -34,14 +26,12 @@ padding-bottom: 50px;
   border-radius: 10px;
   background-color: rgb(249, 248, 247);
 }
-.search_questions{
+
+.search_questions {
   margin: 15px auto;
 }
-.search_questions a{
-  color: rgb(1, 45, 102);
-}
 
-.search_questions input{
+.search_questions input {
   background-color: white;
   outline: none;
   width: 90%;
@@ -54,8 +44,16 @@ padding-bottom: 50px;
 
 .question {
     position: relative;
+  color: black;
+  text-decoration: none;
+  transition: transform 0.2s ease;
 }
-.profile_icon{
+
+.question:hover {
+  transform: scale(1.02);
+}
+
+.profile_icon {
       font-size: 3rem;
     color: rgb(2, 37, 83);
     border-radius: 50%;
@@ -65,11 +63,29 @@ padding-bottom: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: 0.5s;
+  transition: color 0.5s, transform 0.5s, background-color 0.5s;
 }
+
+.profile_icon:hover {
+  color: white;
+  background-color: #022553;
+  transform: scale(1.1);
+}
+
 .user_name {
     font-family: cursive;
     margin: 10px 0px 0px 15px;
     letter-spacing: 2px;
-    color: rgb(1, 45, 102);
+  color: black;
+}
+
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+  transform: scale(1.02);
 }

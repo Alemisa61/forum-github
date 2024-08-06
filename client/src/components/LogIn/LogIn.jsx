@@ -1,27 +1,25 @@
 import React, { useState } from "react";
-import styles from './LogIn.module.css'
-// import { axiosInstance } from "../../API/axios";
-import axios from "axios";
+import "./login.css";
+import { axiosInstance } from "../../API/axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Icon } from "react-icons-kit";
 import { eyeOff } from "react-icons-kit/feather/eyeOff";
 import { eye } from "react-icons-kit/feather/eye";
 
-
 const SignIn = () => {
   const [type, setType] = useState("password"); // State for password visibility toggle
   const [icon, setIcon] = useState(eyeOff); // State for eye icon toggle
-  const [form, setForm] = useState({ email: '', password: '' }); // Form data state
+  const [form, setForm] = useState({ email: "", password: "" }); // Form data state
   const navigate = useNavigate(); // Navigation hook
 
   // Handle sign-in process
   const handleSignIn = async () => {
       try {
-          const response = await axios.post('http://localhost:4000/user/login', form);
+        const response = await axiosInstance.post("/user/login", form);
           if (response.data.token) {
-              localStorage.setItem('token', response.data.token); // Store token in localStorage
-              navigate('/'); // Navigate to home page
+        localStorage.setItem("token", response.data.token); // Store token in localStorage
+            navigate("/"); // Navigate to home page
           } else {
               alert("Login failed");
           }

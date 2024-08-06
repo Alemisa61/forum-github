@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { axiosInstance } from "../../API/axios";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import { RxAvatar } from "react-icons/rx";
 import "./home.css";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { IoPersonSharp } from "react-icons/io5";
 
 const Home = () => {
   const [questions, setQuestions] = useState([]);
   const [filteredQuestions, setFilteredQuestions] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [user, setUser] = useState({ username: "Default User" });
+  const Navigate = useNavigate();
 
   useEffect(() => {
     axiosInstance
-      .get("/api/question")
+      .get("/api/question/")
       .then((response) => {
         setQuestions(response.data.questions);
         setFilteredQuestions(response.data.questions);
@@ -33,12 +34,13 @@ const Home = () => {
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
+
   const handleQuestionClick = () => {
     Navigate("/answer");
   };
 
   return (
-    <section className="questions_section">
+    <section className="questions_section mt-3">
       <div className="container">
         <div className="row">
           <div className="col-md-6">
@@ -60,12 +62,12 @@ const Home = () => {
           </div>
           <div className="mt-4">
             {filteredQuestions.map((question, index) => (
-              <a>
+              <a href="#">
                 <div className="row question" key={index}>
                   <hr />
                   <div className="col-12 col-md-2 user">
                     <div className="profile_icon">
-                      <RxAvatar />
+                      <IoPersonSharp />
                     </div>
                     <div className="user_name">{user.username}</div>
                   </div>
