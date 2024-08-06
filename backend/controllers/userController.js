@@ -7,13 +7,47 @@ const { StatusCodes } = require("http-status-codes");
 
 const register = async (req, res) => {
 
+  const { username, first_name, last_name, email, password } = req.body;
+
   // Validate request body
+  if (!username || !first_name || !last_name || !email || !password) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ error: "Please provide all required fields." });
+  }
+  if (password.length < 8) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ error: "Password must be at least 8 characters" });
+  }
+
+  try {
+    // Encrypt password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
   // Check for existing user
+    const [existingUsers] = await dbConnection.query(
+      "SELECT * FROM users WHERE username = ? OR email = ?",
+      [username, email]
+    );
 
-  //encrypt password
+    if (existingUsers.length > 0) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ error: "User already existed" });
+    }
 
   // Create new user
+    await dbConnection.query(
+      "INSERT INTO users (username, firstname, lastname, email, password) VALUES (?, ?, ?, ?, ?)",
+      [username, first_name, last_name, email, hashedPassword]
+    );
+    res.status(StatusCodes.CREATED).json({ message: "User registered successfully" });
+
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Server Error" });
+  }
 };
 
 
