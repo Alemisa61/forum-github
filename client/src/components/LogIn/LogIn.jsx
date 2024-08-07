@@ -58,7 +58,7 @@ const LogIn = ({ onSwap }) => {
   };
 
   return (
-    <div className="login-container">
+    <div className="login-container shadow">
       <h2>Login to your account</h2>
       <p>
         Don't have an account?{" "}

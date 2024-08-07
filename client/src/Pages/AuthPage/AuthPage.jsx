@@ -23,17 +23,16 @@ const AuthPage = () => {
   
   return (
     <section style={style} className="pt-5">
-      <div className="container my-0">
-        <div className="row">
-          <div className="col-lg-5 col-md-6 mb-4 mx-4">
-            
+      <div className="container-fluid px-4">
+        <div className="row justify-content-center">
+          <div className="col-lg-5 col-md-6 col-sm-8 col-12 mb-4">
             {isSignIn ? (
               <SignIn onSwap={handleSwap} />
             ) : (
               <SignUp onSwap={handleSwap} />
             )}
           </div>
-          <div className="col-lg-5 col-md-6 mb-4 mx-5">
+          <div className="col-lg-5 col-md-6 col-sm-8 col-12 mb-4">
             <About />
           </div>
         </div>

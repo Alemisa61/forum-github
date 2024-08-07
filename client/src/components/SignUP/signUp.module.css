@@ -1,18 +1,22 @@
 
 .sign_up_container {
-  display: block;
+  
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
   position: relative;
   margin: 0 auto;
   height: auto;
-  padding: 60px;
-  background-color: #f9f9f9;
+  justify-content: center;
+  padding: 30px;
+  min-height: 450px;
+  background-color: white;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.5s ease;
   text-align: center;
+  box-sizing: border-box;
 }
+
 /* .row {
     margin: 0 auto;
 } */
@@ -46,9 +50,7 @@
   flex-wrap: wrap;
   flex-direction: column;
 }
-/* .item {
-  padding-right: 42px;
-} */
+
 .item.error input {
   border: 1px solid red;
   background-color: rgb(240, 224, 224);
@@ -67,7 +69,7 @@
 }
 .sign_up_form input {
   width: 100%;
-  padding: 20px;
+  padding: 8px;
   margin-right: 0px;
   margin-bottom: 12px;
   border: 1px solid #ddd;
@@ -126,7 +128,8 @@
 
 @media (max-width: 768px) {
   .sign_up_container {
-    padding: 20px; /* Ensure padding is adequate for smaller screens */
+    padding: 20px; 
+    max-width: 740px;/* Ensure padding is adequate for smaller screens */
   }
 
   .upper_heading {
@@ -142,7 +145,8 @@
   }
 
   .sign_up_form input {
-    font-size: 14px; /* Adjusted font size */
+    font-size: 12px;
+    padding: 20px; /* Adjusted font size */
   }
 
   .join_button {
@@ -157,7 +161,9 @@
 
 @media (max-width: 480px) {
   .sign_up_container {
-    padding: 15px; /* Further reduced padding */
+    padding: 10px; 
+    width: 479px;/* Further reduced padding */
+    box-sizing: border-box;
   }
 
   .upper_heading {
@@ -165,15 +171,16 @@
   }
 
   .upper_signin_button, .upper_signin_button a, .join_login {
-    font-size: 16px; /* Further reduced font size */
+    font-size: 14px; /* Further reduced font size */
   }
 
   .signin_button, .signin_button a {
-    font-size: 12px; /* Further reduced font size */
+    font-size: 8px; /* Further reduced font size */
   }
 
   .sign_up_form input {
-    font-size: 12px; /* Further reduced font size */
+    font-size: 8px;
+   
   }
    .column_container {
     display: flex;
