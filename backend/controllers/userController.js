@@ -28,7 +28,7 @@ const register = async (req, res) => {
 
   try {
     const [user] = await dbConnection.query(
-  // Check for existing user
+      // Check for existing user
       "SELECT username, userid from users WHERE username = ? or email = ?",
       [username, email]
     );
@@ -39,11 +39,11 @@ const register = async (req, res) => {
         .json({ error: "Conflict", msg: "You've alrwady registered." });
     }
 
-  //encrypt password
+    //encrypt password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-  // Create new user
+    // Create new user
     await dbConnection.query(
       "INSERT INTO users (username, firstname, lastname, email, password) VALUES(?,?,?,?,?)",
       [username, firstname, lastname, email, hashedPassword]
