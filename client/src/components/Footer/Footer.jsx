@@ -7,7 +7,7 @@ import logo from '../../assets/evangadi-logo-footer-f73bca57.png'
 
 const Footer = () => {
   return (
-    <footer className="footer_class">
+    <footer className="footer_class mt-5">
       <div className="container px-sm-4">
         <div className="row">
           <div className="col-12 col-md-4">

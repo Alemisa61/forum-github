@@ -6,50 +6,61 @@ const bcrypt = require("bcrypt");
 const { StatusCodes } = require("http-status-codes");
 
 const register = async (req, res) => {
-
-  const { username, first_name, last_name, email, password } = req.body;
+  const { username, firstname, lastname, email, password } = req.body;
 
   // Validate request body
-  if (!username || !first_name || !last_name || !email || !password) {
+  if (!email || !firstname || !lastname || !username || !password) {
     return res
       .status(StatusCodes.BAD_REQUEST)
-      .json({ error: "Please provide all required fields." });
+      .json({
+        error: "Bad Request",
+        msg: "Please provide all required information!",
+      });
   }
-  if (password.length < 8) {
+
+  if (password.length < 8)
     return res
       .status(StatusCodes.BAD_REQUEST)
-      .json({ error: "Password must be at least 8 characters" });
-  }
+      .json({
+        error: "Bad Request",
+        msg: "Password must be at least 8 character.",
+      });
 
   try {
-    // Encrypt password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-  // Check for existing user
-    const [existingUsers] = await dbConnection.query(
-      "SELECT * FROM users WHERE username = ? OR email = ?",
+    const [user] = await dbConnection.query(
+      // Check for existing user
+      "SELECT username, userid from users WHERE username = ? or email = ?",
       [username, email]
     );
 
-    if (existingUsers.length > 0) {
+    if (user.length > 0) {
       return res
         .status(StatusCodes.BAD_REQUEST)
-        .json({ error: "User already existed" });
+        .json({ error: "Conflict", msg: "You've alrwady registered." });
     }
 
-  // Create new user
-    await dbConnection.query(
-      "INSERT INTO users (username, firstname, lastname, email, password) VALUES (?, ?, ?, ?, ?)",
-      [username, first_name, last_name, email, hashedPassword]
-    );
-    res.status(StatusCodes.CREATED).json({ message: "User registered successfully" });
+    //encrypt password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
+    // Create new user
+    await dbConnection.query(
+      "INSERT INTO users (username, firstname, lastname, email, password) VALUES(?,?,?,?,?)",
+      [username, firstname, lastname, email, hashedPassword]
+    );
+    return res
+      .status(StatusCodes.CREATED)
+      .json({ msg: "User created successfully." });
   } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ error: "Server Error" });
+    console.log(error.message);
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({
+        error: "Internal Server Error",
+        msg: "Something went wrong, try again later",
+      });
   }
 };
-
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -99,10 +110,15 @@ const login = async (req, res) => {
   }
 };
 
-
-const checkUser = async (req, res) => {
-
-
+const checkUser = (req, res) => {
+  // Access user info from the request object
+  const { username, userid } = req.user;
+  // Send user info
+  return res.status(StatusCodes.OK).json({
+    message: "Valid user",
+    username,
+    userid,
+  });
 };
 
 

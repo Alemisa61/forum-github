@@ -16,7 +16,7 @@ const authMiddleware = async (req, res, next) => {
 
   const jwtToken = token.split(" ")[1];
   try {
-    const { username, userid } = jwt.verify(jwtToken, VITE_JWT_SECRET);
+    const { username, userid } = jwt.verify(jwtToken, JWT_SECRET);
     req.user = { username, userid };
     next();
   } catch (error) {

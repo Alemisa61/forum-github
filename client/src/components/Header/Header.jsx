@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import "./header.css";
 import LOGO from "../../assets/evangadi-logo-5fea54cc.png";
 import NavLinks from "./NavLinks";
@@ -10,7 +9,7 @@ const Header = () => {
   return (
     <>
       <div>
-        <nav className="navbar navbar-light bg-light py-4">
+        <nav className="navbar navbar-light bg-light mb-2">
           <div className="container navbar-container">
             <Link className="navbar-brand" to="">
               <img src={LOGO} alt="" />

@@ -13,7 +13,9 @@
   transition: all 0.5s ease;
   text-align: center;
 }
-
+/* .row {
+    margin: 0 auto;
+} */
 .upper_heading {
   margin-bottom: 30px;
 }
@@ -44,9 +46,9 @@
   flex-wrap: wrap;
   flex-direction: column;
 }
-.item {
+/* .item {
   padding-right: 42px;
-}
+} */
 .item.error input {
   border: 1px solid red;
   background-color: rgb(240, 224, 224);
@@ -78,10 +80,11 @@
 }
 .item_password {
   position: relative;
-  padding-right: 22px;
+  /* padding-right: 22px; */
 }
 .password_toggle {
  position: absolute;
+ padding-bottom: 10px;
   top: 50%;
   right: 40px; /* Adjust this value as needed */
   transform: translateY(-50%);
@@ -109,8 +112,7 @@
   color: #da7000;
 }
 .sign_up_form div input {
-  border: none;
-  border-bottom: 2px solid #ccc; /* Default bottom border color */
+  border-bottom: 2px solid #ccc; /* Default bottom 
   outline: none; /* Remove default focus outline */
 }
 
@@ -118,6 +120,9 @@
   border-bottom: 2px solid orange; /* Orange bottom border color on focus */
 }
 
+ .sign_up_form .join_button:hover{
+  background-color: #FE8402;
+  }
 
 @media (max-width: 768px) {
   .sign_up_container {
@@ -177,8 +182,9 @@
 }
   .join_button {
     font-size: 0.9em; 
-    padding: 8px 15px; 
+    padding: 8px 15px;
   }
+  
 
   .lower_account_button a {
     font-size: 16px; /* Further reduced font size */

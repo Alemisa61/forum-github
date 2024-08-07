@@ -1,37 +1,38 @@
-// App.js
-import Loader from "./components/Loader/Loader";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./components/AuthContext/AuthContext";
+import AuthProvider from "./components/AuthContext/AuthContext"; // Import AuthProvider
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import HomePage from "./Pages/Home/Home";
-import AnswerPage from "./Pages/Answer/Answer";
-import LoginPage from "./Pages/SignIn/SignIn";
-import SignUpPage from "./Pages/SighUp/SignUpPage";
-import QuestionPage from "./Pages/Question/Question";
+import SignUpPage from "./Pages/AuthPage/AuthPage";
 import Layout from "./components/Layout/Layout";
+import Question from "./Pages/Question/Question";
+import Answer from "./Pages/Answer/Answer";
 
 const App = () => (
   <AuthProvider>
     <Router>
       <Layout>
         <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<SignUpPage />} />
-          <Route exact path="/" element={<HomePage />} />
+          <Route exact path="/home" element={
+            <ProtectedRoute>
+
+              <HomePage />
+            </ProtectedRoute>
+            } />
+          <Route path="/" element={<SignUpPage />} />
           <Route
-            path="/questions"
+            path="/question/:question_id"
             element={
               <ProtectedRoute>
-                <QuestionPage />
+                <Answer />
               </ProtectedRoute>
             }
           />
           <Route
-            path="/answer"
+            path="/ask"
             element={
               <ProtectedRoute>
-                <AnswerPage />
+                <Question />
               </ProtectedRoute>
             }
           />
