@@ -1,7 +1,7 @@
 .question_title {
-    width: 95%;
-    margin: 15px auto;
-    font-family: cursive;
+  width: 95%;
+  margin: 15px auto;
+  font-family: cursive;
   color: black;
   text-decoration: none;
 }
@@ -43,7 +43,7 @@
 }
 
 .question {
-    position: relative;
+  position: relative;
   color: black;
   text-decoration: none;
   transition: transform 0.2s ease;
@@ -54,15 +54,15 @@
 }
 
 .profile_icon {
-      font-size: 3rem;
-    color: rgb(2, 37, 83);
-    border-radius: 50%;
-    border: 0.5px solid rgb(2, 37, 83);
-    width: 100px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  font-size: 3rem;
+  color: rgb(2, 37, 83);
+  border-radius: 50%;
+  border: 0.5px solid rgb(2, 37, 83);
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: color 0.5s, transform 0.5s, background-color 0.5s;
 }
 
@@ -73,9 +73,9 @@
 }
 
 .user_name {
-    font-family: cursive;
-    margin: 10px 0px 0px 15px;
-    letter-spacing: 2px;
+  font-family: cursive;
+  margin: 10px 0px 0px 15px;
+  letter-spacing: 2px;
   color: black;
 }
 

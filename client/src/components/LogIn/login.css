@@ -70,13 +70,20 @@ body {
   }
   
   /* Styling for icons within the password field */
-  .icon {
+   .password-field span {
     position: absolute;
     top: 50%;
-    right: 20px;
+    right: 30px;
+    /* padding-right:20px; */
     transform: translateY(-50%);
     cursor: pointer;
+    z-index: 2
+
   }
+
+  .newClass{
+  position: relative;
+}
   
   /* Styling for the "forgot password" link */
   .forgot-password {

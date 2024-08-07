@@ -1,20 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { axiosInstance } from "../../API/axios";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import "./home.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoPersonSharp } from "react-icons/io5";
+import { AuthContext } from "../../components/AuthContext/AuthContext"; // Import AuthContext
 
 const Home = () => {
   const [questions, setQuestions] = useState([]);
   const [filteredQuestions, setFilteredQuestions] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [user, setUser] = useState({ username: "Default User" });
-  const Navigate = useNavigate();
+  const { user } = useContext(AuthContext); // Access user info from context
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     axiosInstance
-      .get("/api/question/")
+      .get("/api/question/", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setQuestions(response.data.questions);
         setFilteredQuestions(response.data.questions);
@@ -22,7 +28,7 @@ const Home = () => {
       .catch((error) => {
         console.error("Error fetching questions:", error);
       });
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     const results = questions.filter((question) =>
@@ -35,8 +41,8 @@ const Home = () => {
     setSearchTerm(event.target.value);
   };
 
-  const handleQuestionClick = () => {
-    Navigate("/answer");
+  const handleQuestionClick = (question_id) => {
+    navigate(`/question/${question_id}`);
   };
 
   return (
@@ -44,14 +50,11 @@ const Home = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-6">
-            <a href="/question">
+            <a href="/ask">
               <button className="btn btn-primary">Ask Question</button>
             </a>
           </div>
-          <div className="col-12 col-md-4 pt-2 welcome_message">
-            Welcome:
-            <span className="ms-2">{user.username}</span>
-          </div>
+          <div className="col-12 col-md-4 pt-2 welcome_message">Welcome,</div>
           <div className="search_questions">
             <input
               type="text"
@@ -62,25 +65,29 @@ const Home = () => {
           </div>
           <div className="mt-4">
             {filteredQuestions.map((question, index) => (
-              <a href="#">
-                <div className="row question" key={index}>
+              <Link
+                to={`/question/${question.question_id}`}
+                key={index}
+                onClick={() => handleQuestionClick(question.question_id)}
+              >
+                <div className="row question">
                   <hr />
                   <div className="col-12 col-md-2 user">
                     <div className="profile_icon">
                       <IoPersonSharp />
                     </div>
-                    <div className="user_name">{user.username}</div>
+                    <div className="user_name">{question.user_name}</div>
                   </div>
                   <div className="col-10 col-md-9 my-md-4">
                     <p className="question_title">{question.title}</p>
                   </div>
                   <div className="col-2 col-md-1">
-                    <div className="next_arrow" onClick={handleQuestionClick}>
+                    <div className="next_arrow">
                       <NavigateNextIcon />
                     </div>
                   </div>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

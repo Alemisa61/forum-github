@@ -6,16 +6,61 @@ const bcrypt = require("bcrypt");
 const { StatusCodes } = require("http-status-codes");
 
 const register = async (req, res) => {
+  const { username, firstname, lastname, email, password } = req.body;
 
   // Validate request body
+  if (!email || !firstname || !lastname || !username || !password) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({
+        error: "Bad Request",
+        msg: "Please provide all required information!",
+      });
+  }
 
+  if (password.length < 8)
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({
+        error: "Bad Request",
+        msg: "Password must be at least 8 character.",
+      });
+
+  try {
+    const [user] = await dbConnection.query(
   // Check for existing user
+      "SELECT username, userid from users WHERE username = ? or email = ?",
+      [username, email]
+    );
+
+    if (user.length > 0) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ error: "Conflict", msg: "You've alrwady registered." });
+    }
 
   //encrypt password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
   // Create new user
+    await dbConnection.query(
+      "INSERT INTO users (username, firstname, lastname, email, password) VALUES(?,?,?,?,?)",
+      [username, firstname, lastname, email, hashedPassword]
+    );
+    return res
+      .status(StatusCodes.CREATED)
+      .json({ msg: "User created successfully." });
+  } catch (error) {
+    console.log(error.message);
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({
+        error: "Internal Server Error",
+        msg: "Something went wrong, try again later",
+      });
+  }
 };
-
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -65,10 +110,15 @@ const login = async (req, res) => {
   }
 };
 
-
-const checkUser = async (req, res) => {
-
-
+const checkUser = (req, res) => {
+  // Access user info from the request object
+  const { username, userid } = req.user;
+  // Send user info
+  return res.status(StatusCodes.OK).json({
+    message: "Valid user",
+    username,
+    userid,
+  });
 };
 
 

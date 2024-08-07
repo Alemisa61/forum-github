@@ -1,11 +1,20 @@
 import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
-import { AuthContext } from "../AuthContext/AuthContext"; 
+import { AuthContext } from "../AuthContext/AuthContext";
 
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { token } = useContext(AuthContext);
 
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  if (!token) {
+    return (
+      <>
+        <p>Please Sign in to see this page.</p>
+        <Navigate to="/" />
+      </>
+    );
+  }
+
+  return children;
 };
 
 export default ProtectedRoute;
