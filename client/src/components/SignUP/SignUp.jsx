@@ -72,7 +72,7 @@ function SignUp({ onSwap }) {
   }
 
   return (
-    <section className={classes.sign_up_container}>
+    <div className={classes.sign_up_container}>
       <div>
         <div className={classes.upper_heading}>
           <h3 className={classes.join_login}>Join the network</h3>
@@ -97,7 +97,7 @@ function SignUp({ onSwap }) {
                 errors.firstname ? classes.error : ""
               }`}
             >
-              <input ref={firstNameDom} type="text" placeholder="First name" />
+              <input ref={firstNameDom} type="text" placeholder="First name"/>
             </div>
             <div
               className={`${classes.item} ${
@@ -147,7 +147,7 @@ function SignUp({ onSwap }) {
           </Link>
         </p>
       </div>
-    </section>
+    </div>
   );
 }
 
