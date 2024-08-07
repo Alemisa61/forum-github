@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./question.module.css";
+
 import { axiosInstance } from "../../API/axios";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import "./Question.css"
