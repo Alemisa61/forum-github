@@ -1,0 +1,106 @@
+.question {
+  background-color: rgb(251, 249, 249);
+}
+.good__questions {
+  margin: 0 45px;
+}
+
+.good__questions {
+  position: relative;
+}
+
+.good__questions:hover h3::after {
+  transform: scaleX(1);
+  background-color: rgb(235, 127, 127);
+}
+
+h3 {
+  position: relative;
+  text-decoration: none;
+  /* font-size: 16px; */
+  text-decoration: none;
+  font-size: 24px;
+  font-family: cursive;
+  max-width: 315px;
+}
+
+h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: rgb(220, 111, 111);
+  transform: scaleX(0.5);
+  transform-origin: left center;
+  transition: transform 0.3s ease;
+}
+.good__questions h3:hover::after {
+  transform: scaleX(1);
+}
+
+.steps {
+  display: block;
+  list-style: disc;
+  font-family: monospace;
+  font-size: 16px;
+  margin-left: 20px;
+  padding-left: 25px;
+}
+.flex {
+  display: flex;
+  align-items: center;
+}
+.flex p {
+  padding-left: 5px;
+}
+.post_your_question p {
+  font-weight: 700px;
+  font-size: 22px;
+  text-align: center;
+}
+.textarea {
+  max-width: 1141px;
+  margin: 0px auto;
+}
+.first_textarea {
+  font-family: cursive;
+  font-size: 16px;
+  color: rgb(147, 143, 138);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  resize: vertical;
+  height: 30px;
+  display: block;
+  width: 100%;
+}
+.second_textarea {
+  font-size: 16px;
+  color: rgb(147, 143, 138);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  resize: vertical;
+  height: 140px;
+  display: block;
+  width: 100%;
+}
+.first_textarea,
+.second_textarea onClick {
+  border-radius: blue;
+}
+
+.postQuestion__button button {
+  background-color: rgb(0, 83, 249);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border-style: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+.postQuestion__button button:hover {
+  background-color: rgb(14, 67, 203);
+}
