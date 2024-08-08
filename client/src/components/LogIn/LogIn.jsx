@@ -31,39 +31,39 @@ const LogIn = ({ onSwap }) => {
         alert("Login failed. Please check your email and password.");
       }
     } catch (error) {
-      let errorMsg = "Something went wrong. Please try again.";
-
-      if (error.response && error.response.data) {
-        switch (error.response.status) {
-          case 400:
-            errorMsg =
-              error.response.data.message ||
-              "Please provide all required fields";
-            break;
-          case 401:
-            errorMsg =
-              error.response.data.message || "Invalid username or password";
-            break;
-          case 500:
-            errorMsg =
-              error.response.data.message || "An unexpected error occurred";
-            break;
-          default:
-            errorMsg = "Something went wrong. Please try again.";
-            break;
+      if (error.response) {
+        if (error.response.status === 401) {
+          alert("Incorrect email or password.");
+        } else {
+          alert("An error occurred. Please try again later.");
         }
+      } else {
+        alert("Network error. Please check your internet connection.");
       }
-
-      setErrorMessage(errorMsg);
+      console.error("Error:", error);
     }
-  }
+  };
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleIconChange = () => {
+    setIcon(type === "password" ? eye : eyeOff);
+    setType(type === "password" ? "text" : "password");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSignIn();
+  };
 
   return (
-    <div className="login-container shadow">
+    <div className="login-container">
       <h2>Login to your account</h2>
       <p>
         Don't have an account?{" "}
-        <Link to="/" onClick={onSwap}>
+        <Link to="#" onClick={onSwap}>
           Create a new account
         </Link>
       </p>

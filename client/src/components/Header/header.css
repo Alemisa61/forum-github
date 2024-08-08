@@ -36,3 +36,16 @@ body {
 .navbar-nav a:hover {
   color: #fe8402;
 }
+
+
+.logout-button {
+  background-color: #fff; /* White background color */
+  color: #000; /* Text color */
+  border: 0.5px solid #ccc; /* Optional: Add a border for visibility */
+  padding: 0.5rem 1rem; /* Optional: Add padding */
+  border-radius: 4px; /* Optional: Add border radius for rounded corners */
+}
+.logout-button:hover {
+  background-color: #f0f0f0; /* Optional: Slightly darker background on hover */
+  border-color: #bbb; /* Optional: Change border color on hover */
+}

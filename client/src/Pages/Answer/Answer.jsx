@@ -43,8 +43,8 @@ function PostAnswer() {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      // Assuming data contains an object for the question
-      setQuestion(data); // Adjust based on your actual API response structure
+      
+      setQuestion(data);
     } catch ({ response }) {
       handleError(response);
     }
@@ -109,7 +109,7 @@ function PostAnswer() {
       <h1>Answer From The Community</h1>
       <hr />
       <div className="my-5 w-md-75 mx-auto">
-        {answers.map((answer, i) => (
+        {answers?.map((answer, i) => (
           <div key={i} className="row">
             <div className="col-3 col-md-2 col-lg-1 user">
               <div className="avatar">
