@@ -40,6 +40,7 @@ const LogIn = ({ onSwap }) => {
       } else {
         alert("Network error. Please check your internet connection.");
       }
+      console.error("Error:", error);
     }
   };
 
@@ -58,11 +59,11 @@ const LogIn = ({ onSwap }) => {
   };
 
   return (
-    <div className="login-container shadow">
+    <div className="login-container">
       <h2>Login to your account</h2>
       <p>
         Don't have an account?{" "}
-        <Link to="/" onClick={onSwap}>
+        <Link to="#" onClick={onSwap}>
           Create a new account
         </Link>
       </p>

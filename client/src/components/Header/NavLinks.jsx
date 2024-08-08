@@ -18,12 +18,12 @@ const NavLinks = () => {
     <>
       <ul className="navbar-nav d-flex flex-column flex-lg-row">
         <li className="nav-item mx-lg-3">
-          <Link className="nav-link" to="#">
+          <Link className="nav-link" to="/home">
             Home
           </Link>
         </li>
         <li className="nav-item mx-lg-3">
-          <Link className="nav-link" to="">
+          <Link className="nav-link" to="/home">
             How It Works
           </Link>
         </li>
@@ -32,7 +32,7 @@ const NavLinks = () => {
         {isAuthenticated ? (
           <>
             <button
-              className="btn btn-primary btn-custom-width"
+              className="btn btn-custom-width logout-button"
               onClick={handleLogoutClick}
             >
               Log Out

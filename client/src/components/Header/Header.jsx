@@ -1,19 +1,36 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./header.css";
 import LOGO from "../../assets/evangadi-logo-5fea54cc.png";
 import NavLinks from "./NavLinks";
+import { AuthContext } from "../AuthContext/AuthContext";
 
 
 const Header = () => {
+ const navigate = useNavigate();
+//  const { token } = useContext(AuthContext);
+const token = localStorage.getItem("token");
+console.log(token);
+  const handleLogoClick = () => {
+    if (token) {
+      navigate("/home");
+    } else {
+      navigate("/"); // Navigate to login if the user is not authenticated
+    }
+  };
+
   return (
     <>
       <div>
         <nav className="navbar navbar-light bg-light mb-2">
           <div className="container navbar-container">
-            <Link className="navbar-brand" to="">
-              <img src={LOGO} alt="" />
-            </Link>
+            <div
+              className="navbar-brand"
+              onClick={handleLogoClick}
+              style={{ cursor: "pointer" }}
+            >
+              <img src={LOGO} alt="Logo" />
+            </div>
             <div className="d-lg-none d-flex align-items-center">
               <button
                 className="navbar-toggler"
