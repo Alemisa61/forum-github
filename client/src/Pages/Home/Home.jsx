@@ -47,8 +47,8 @@ const Home = () => {
 
   return (
     <section className="questions_section mt-3">
-      <div className="container">
-        <div className="row">
+      <div className="container mt-3 mb-5 pl-5">
+        <div className="row  mt-3 mb-5 pl-5">
           <div className="col-md-6">
             <a href="/ask">
               <button className="btn btn-primary">Ask Question</button>
@@ -65,7 +65,7 @@ const Home = () => {
               onChange={handleSearchChange}
             />
           </div>
-          <div className="mt-4">
+          <div className="mt-4 ml-0">
             {filteredQuestions.map((question, index) => (
               <Link
                 to={`/question/${question.question_id}`}
