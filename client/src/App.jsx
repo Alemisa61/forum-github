@@ -5,25 +5,30 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import HomePage from "./Pages/Home/Home";
 import SignUpPage from "./Pages/AuthPage/AuthPage";
 import Layout from "./components/Layout/Layout";
-import Question from "./Pages/Question/Question";
-import Answer from "./Pages/Answer/Answer";
+import Questions from "./Pages/Questions/Question";
+// import Answer from "./Pages/Answer/Answer";
+import PostAnswer from "./Pages/postAnswerpage/PostAnswer";
 
 const App = () => (
   <AuthProvider>
     <Router>
       <Layout>
         <Routes>
-          <Route exact path="/home" element={
-            <ProtectedRoute>
-              <HomePage />
-            </ProtectedRoute>
-            } />
+          <Route
+            exact
+            path="/home"
+            element={
+              <ProtectedRoute>
+                <HomePage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/" element={<SignUpPage />} />
           <Route
             path="/question/:question_id"
             element={
               <ProtectedRoute>
-                <Answer />
+                <PostAnswer />
               </ProtectedRoute>
             }
           />
@@ -31,7 +36,7 @@ const App = () => (
             path="/ask"
             element={
               <ProtectedRoute>
-                <Question />
+                <Questions />
               </ProtectedRoute>
             }
           />

@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 function SignUp({ onSwap }) {
 
   const [visible, setVisible] = useState(false);
+   const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
   
@@ -48,10 +49,10 @@ function SignUp({ onSwap }) {
     };
     setErrors(newErrors);
 
-    if (Object.values(newErrors).some((error) => error)) {
-      alert("Please provide all required information");
-      return;
-    }
+    // if (Object.values(newErrors).some((error) => error)) {
+    //   alert("Please provide all required information");
+    //   return;
+    // }
 
     try {
       const response = await axiosInstance.post("/api/user/register", {
@@ -65,9 +66,26 @@ function SignUp({ onSwap }) {
       console.log(response.data);
       alert("Register successful. Please login");
       navigate("/home");
-    } catch (error) {
-      alert("Something went wrong");
-      console.log(error.response);
+} catch (error) {
+  let errorMessage = "Something went wrong. Please try again.";
+
+  if (error.response && error.response.data) {
+    if (error.response.status === 400) {
+      if (error.response.data.message === "Please provide all required fields.") {
+        errorMessage = "Please provide all required fields.";
+      } else if (error.response.data.message === "Password must be at least 8 characters.") {
+        errorMessage = "Password must be at least 8 characters.";
+      } else {
+        errorMessage = error.response.data.message || "Bad Request";
+      }
+    } else if (error.response.status === 409) {
+      errorMessage = error.response.data.message || "User already exists";
+    } else if (error.response.status === 500) {
+      errorMessage = error.response.data.message || "An unexpected error occurred";
+    }
+  }
+
+      setErrorMessage(errorMessage);
     }
   }
 
@@ -75,6 +93,7 @@ function SignUp({ onSwap }) {
     <div className={classes.sign_up_container}>
       <div>
         <div className={classes.upper_heading}>
+          <p className={classes.error_message}>{errorMessage}</p>
           <h3 className={classes.join_login}>Join the network</h3>
           <p className={classes.upper_signin_button}>
             Already have an account?{" "}

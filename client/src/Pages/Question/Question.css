@@ -1,8 +1,11 @@
 .question {
   background-color: rgb(251, 249, 249);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .good__questions {
-  margin: 0 45px;
+  margin: 0 auto;
 }
 
 .good__questions {

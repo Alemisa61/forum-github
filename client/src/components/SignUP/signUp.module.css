@@ -50,6 +50,11 @@
   flex-wrap: wrap;
   flex-direction: column;
 }
+.error_message{
+  text-align: center;
+    color: red;
+    font-family: monospace;
+}
 
 .item.error input {
   border: 1px solid red;

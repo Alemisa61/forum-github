@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
-import { AuthContext } from "../AuthContext/AuthContext";
-
 const ProtectedRoute = ({ children }) => {
-  const { token } = useContext(AuthContext);
+ const token = localStorage.getItem("token");
 
   if (!token) {
     return (
