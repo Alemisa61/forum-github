@@ -10,21 +10,17 @@ const register = async (req, res) => {
 
   // Validate request body
   if (!email || !firstname || !lastname || !username || !password) {
-    return res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({
-        error: "Bad Request",
-        msg: "Please provide all required information!",
-      });
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      error: "Bad Request",
+      message: "Please provide all required fields.",
+    });
   }
 
   if (password.length < 8)
-    return res
-      .status(StatusCodes.BAD_REQUEST)
-      .json({
-        error: "Bad Request",
-        msg: "Password must be at least 8 character.",
-      });
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      error: "Bad Request",
+      message: "Password must be at least 8 characters.",
+    });
 
   try {
     const [user] = await dbConnection.query(
@@ -35,7 +31,7 @@ const register = async (req, res) => {
 
     if (user.length > 0) {
       return res
-        .status(StatusCodes.BAD_REQUEST)
+        .status(StatusCodes.CONFLICT)
         .json({ error: "Conflict", msg: "You've alrwady registered." });
     }
 
