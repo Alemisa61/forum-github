@@ -14,6 +14,7 @@ const App = () => (
     <Router>
       <Layout>
         <Routes>
+          <Route path="/" element={<SignUpPage />} />
           <Route
             exact
             path="/home"
@@ -23,12 +24,10 @@ const App = () => (
               </ProtectedRoute>
             }
           />
-          <Route path="/" element={<SignUpPage />} />
           <Route
             path="/question/:question_id"
             element={
               <ProtectedRoute>
-                <PostAnswer />
                 <PostAnswer />
               </ProtectedRoute>
             }
