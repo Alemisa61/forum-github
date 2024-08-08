@@ -14,7 +14,7 @@ const postQuestion = async (req, res) => {
     const question_id = uuidv4();
   ///Will need to add created_at column in the db and insert the value now()
     await dbConnection.query(
-      "insert into questions (question_id,title, description,user_name) values (?, ?,?,?)",
+      "insert into questions (question_id,title, description,user_name, created_at) values (?, ?,?,?, NOW())",
       [question_id, title, description, req.user.username]
     );
     return res
@@ -33,7 +33,7 @@ const getAllQuestions = async (req, res) => {
   try {
 
     const [questions] = await dbConnection.query(
-      "SELECT title,description,question_id,user_name FROM questions JOIN users ON users.username = questions.user_name ORDER BY id DESC"
+      "SELECT title,description,question_id,user_name, created_at FROM questions JOIN users ON users.username = questions.user_name ORDER BY questions.id DESC"
     );
     return res.status(StatusCodes.OK).json({ questions });
   } catch (error) {
