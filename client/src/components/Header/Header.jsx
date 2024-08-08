@@ -22,7 +22,7 @@ console.log(token);
   return (
     <>
       <div>
-        <nav className="navbar navbar-light bg-light mb-2">
+        <nav className="navbar navbar-light bg-light header_style">
           <div className="container navbar-container">
             <div
               className="navbar-brand"

@@ -90,7 +90,7 @@ const LogIn = ({ onSwap }) => {
         <Link to="/" className="forgot-password">
           Forgot password?
         </Link>
-        <button type="submit" className="login-button">
+        <button type="submit" className="login_button">
           Login
         </button>
       </form>
