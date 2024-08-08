@@ -15,7 +15,6 @@ const App = () => (
         <Routes>
           <Route exact path="/home" element={
             <ProtectedRoute>
-
               <HomePage />
             </ProtectedRoute>
             } />

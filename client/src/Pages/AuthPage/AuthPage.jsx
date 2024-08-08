@@ -4,6 +4,7 @@ import SignUp from "../../components/SignUP/SignUp";
 import About from '../../components/About/About';
 import bgSvg from "../../../src/assets/bg-svg-f.svg";
 import './authPage.css'
+
 const style = {
   backgroundImage: `url(${bgSvg})`,
   backgroundRepeat: "no-repeat",

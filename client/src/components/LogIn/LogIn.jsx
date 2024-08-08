@@ -27,9 +27,7 @@ const LogIn = ({ onSwap }) => {
         localStorage.setItem("token", response.data.token);
         updateToken(response.data.token);
         navigate("/home");
-      } else {
-        alert("Login failed. Please check your email and password.");
-      }
+      } 
     } catch (error) {
       if (error.response) {
         if (error.response.status === 401) {

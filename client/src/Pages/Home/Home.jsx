@@ -54,7 +54,9 @@ const Home = () => {
               <button className="btn btn-primary">Ask Question</button>
             </a>
           </div>
-          <div className="col-12 col-md-4 pt-2 welcome_message">Welcome,</div>
+          <div className="col-12 col-md-4 pt-2 welcome_message">
+            Welcome, {user.username}
+          </div>
           <div className="search_questions">
             <input
               type="text"
