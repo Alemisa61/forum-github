@@ -15,16 +15,13 @@ function PostAnswer() {
   const inputDom = useRef();
   const token = localStorage.getItem("token");
 
-  const handleError = (response) => {
-    if (response.status === 401) {
-      localStorage.setItem("token", "");
-      navigate("/");
-    } else if (response.status === 404) {
-      console.error("Question not found");
-    } else {
-      console.error("An unexpected error occurred", response?.data);
-    }
-  };
+const handleError = (response, setError) => {
+  if (response.status === 404) {
+    setError("Question not found.");
+  } else {
+    setError("An unexpected error occurred. Please try again.");
+  }
+};
 
   const fetchAnswers = async () => {
     try {
@@ -93,6 +90,7 @@ function PostAnswer() {
   return (
     <div className="container">
       <div className="mb-5">
+        {error && <div className="error-message">{error}</div>}
         <h2 className="mb-3">QUESTION</h2>
         <div className="title mb-2 text">
           <span>
@@ -125,7 +123,7 @@ function PostAnswer() {
         ))}
       </div>
       <div className="post mx-auto w-md-75">
-        <p >{msg}</p>
+        <p>{msg}</p>
         <form onSubmit={postAnswer}>
           <textarea
             ref={inputDom}
