@@ -89,9 +89,10 @@
 
 .single-question .user_name {
   font-family: 'Cursive', sans-serif;
-  margin: 30px;
+  margin: 20px;
   letter-spacing: 2px;
   color: black;
+  font-weight:700;
 }
 
 .questions_section a {

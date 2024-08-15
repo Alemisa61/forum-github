@@ -12,6 +12,10 @@ body {
   background-color: white;
   height: 100px;
 }
+.nav-item {
+  font-size: medium;
+  font-weight: 700;
+}
 
 .nav-actions {
   background-color: #516cf0;
