@@ -102,8 +102,7 @@ return (
                   <div className="profile_icon">
                     <IoPersonSharp />
                   </div>
-                  <div className="user_name align-item-end">
-                    {question.user_name}
+                  <div className="user_name align-item-end">By: {question.user_name}
                   </div>
                 </div>
                 <div className="col-10 col-md-9 my-md-4">
