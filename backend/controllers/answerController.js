@@ -2,6 +2,7 @@
 const dbConnection = require("../dbConfig");
 
 const { StatusCodes } = require("http-status-codes");
+
 const getAnswers = async (req, res) => {
   const { question_id } = req.params;
 
@@ -15,7 +16,7 @@ const getAnswers = async (req, res) => {
   try {
     // Query to fetch answers for the specified question_id
     const [rows] = await dbConnection.query(
-      "SELECT answer_id, content, user_name, created_at FROM answers WHERE question_id = ?",
+      "SELECT answer_id, content, user_name, created_at FROM answers WHERE question_id = ? ORDER BY answer_id DESC",
       [question_id]
     );
 
