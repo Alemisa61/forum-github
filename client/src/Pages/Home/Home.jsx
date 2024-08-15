@@ -125,7 +125,7 @@ return (
                   Edit <EditIcon />
                 </button>
               </div>
-              <hr />
+              <hr className="w-75 mt-2"/>
             </div>
           </div>
         ))}
