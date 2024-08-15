@@ -86,12 +86,17 @@
   background-color: #022553;
   transform: scale(1.1);
 }
-
 .single-question .user_name {
   font-family: 'Cursive', sans-serif;
-  margin: 20px;
+  margin-top: 30px;
+
+}
+
+.single-question .user_name span {
+  font-family: Arial, sans-serif;
   letter-spacing: 2px;
-  color: black;
+  padding: 7px;
+   color: #0B5ED7;
   font-weight:700;
 }
 
