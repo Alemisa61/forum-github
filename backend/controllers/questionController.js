@@ -71,4 +71,63 @@ const getSingleQuestion = async (req, res) => {
   }
 };
 
-module.exports = { getAllQuestions, getSingleQuestion, postQuestion };
+
+const editQuestion = async (req, res) => {
+  const { title, description } = req.body;
+  const { question_id } = req.params;
+  console.log(question_id);
+
+  if (!title && !description) {
+    return res
+      .status(StatusCodes.BAD_REQUEST)
+      .json({ message: "No fields to update" });
+  }
+
+  try {
+    let query = "UPDATE questions SET ";
+    let updateValues = [];
+
+    
+    if (title) {
+      query += "title = ?, ";
+      updateValues.push(title);
+    }
+
+    if (description) {
+      query += "description = ?, ";
+      updateValues.push(description);
+    }
+
+  
+    query = query.slice(0, -2);
+    query += " WHERE question_id = ? AND user_name = ?";
+    updateValues.push(question_id, req.user.username);
+
+    console.log(question_id);
+    const [result] = await dbConnection.query(query, updateValues);
+
+    if (result.affectedRows === 0) {
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ message: "Question not found or user not authorized" });
+    }
+
+    return res
+      .status(StatusCodes.OK)
+      .json({ msg: "Question updated successfully" });
+  } catch (error) {
+    console.error(error.message);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      error: "Internal Server Error",
+      message: "An unexpected error occurred",
+    });
+  }
+};
+
+
+module.exports = {
+  getAllQuestions,
+  getSingleQuestion,
+  postQuestion,
+  editQuestion,
+};

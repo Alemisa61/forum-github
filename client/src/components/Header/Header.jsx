@@ -7,15 +7,15 @@ import { AuthContext } from "../AuthContext/AuthContext";
 
 
 const Header = () => {
- const navigate = useNavigate();
-//  const { token } = useContext(AuthContext);
-const token = localStorage.getItem("token");
-console.log(token);
+  const navigate = useNavigate();
+  // const token2 = localStorage.getItem("token");
+  const { token } = useContext(AuthContext);
+
   const handleLogoClick = () => {
     if (token) {
       navigate("/home");
     } else {
-      navigate("/"); // Navigate to login if the user is not authenticated
+      navigate("/");
     }
   };
 
@@ -73,3 +73,4 @@ console.log(token);
 };
 
 export default Header;
+

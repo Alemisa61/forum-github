@@ -6,8 +6,8 @@ import HomePage from "./Pages/Home/Home";
 import SignUpPage from "./Pages/AuthPage/AuthPage";
 import Layout from "./components/Layout/Layout";
 import Questions from "./Pages/Questions/Question";
-// import Answer from "./Pages/Answer/Answer";
-import PostAnswer from "./Pages/postAnswerpage/PostAnswer";
+import AnswerPage from "./Pages/AnswerPage/AnswerPage";
+import EditQuestion from "./Pages/EditQuestion/EditQuestion";
 
 const App = () => (
   <AuthProvider>
@@ -28,7 +28,15 @@ const App = () => (
             path="/question/:question_id"
             element={
               <ProtectedRoute>
-                <PostAnswer />
+                <AnswerPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/question/edit/:question_id"
+            element={
+              <ProtectedRoute>
+                <EditQuestion />
               </ProtectedRoute>
             }
           />

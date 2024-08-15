@@ -1,53 +1,50 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { HiArrowCircleRight } from "react-icons/hi";
 import { FaUser } from "react-icons/fa";
 import { axiosInstance } from "../../API/axios";
-import styles from "./PostAnswer.module.css";
+import styles from "./AnswerPage.module.css";
 import { AuthContext } from "../../components/AuthContext/AuthContext";
 
-
 function PostAnswer() {
-  const navigate = useNavigate();
-  const {updateToken} = useContext(AuthContext)
+  const { token } = useContext(AuthContext);
   const { question_id } = useParams();
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
 
   const [answers, setAnswers] = useState([]);
   const [question, setQuestion] = useState([]);
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState("");
+  const [error, setError] = useState("");
   const inputDom = useRef();
+
+  const handleError = (response) => {
+    if (response.status === 404) {
+      setError("Question not found.");
+    } else {
+      setError("An unexpected error occurred. Please try again.");
+    }
+  };
 
   const fetchAnswers = async () => {
     try {
       const { data } = await axiosInstance.get(`/api/answer/${question_id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       });
       setAnswers(data.answers);
     } catch ({ response }) {
-      localStorage.setItem("token", "");
-     updateToken()
-      navigate("/");
-      console.log(response.data);
+      handleError(response);
     }
   };
 
   const fetchQuestion = async () => {
     try {
       const { data } = await axiosInstance.get(`/api/question/${question_id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       });
       setQuestion(data);
     } catch ({ response }) {
-      console.log(response.data);
-      localStorage.setItem("token", "");
-      updateToken();
-      navigate("/");
+      handleError(response);
     }
   };
 
@@ -61,6 +58,7 @@ function PostAnswer() {
       inputDom.current.focus();
       return;
     }
+
     try {
       setLoading(true);
       const { data } = await axiosInstance.post(
@@ -75,35 +73,30 @@ function PostAnswer() {
           },
         }
       );
+
       setLoading(false);
-      inputDom.current.style.backgroundColor = "#fff";
       inputDom.current.value = "";
       setMsg("Answer posted successfully");
-      setTimeout(() => {
-        setMsg("");
-      }, 5000);
-      fetchAnswers();
+      setTimeout(() => setMsg(""), 5000);
+      fetchAnswers(); // Refresh the list of answers after posting
     } catch ({ response }) {
-      setMsg("");
       setLoading(false);
+      handleError(response);
+    } finally {
       inputDom.current.style.backgroundColor = "#fff";
-      localStorage.setItem("token", "");
-      updateToken();
-      navigate("/");
-    
     }
   };
 
   useEffect(() => {
     fetchQuestion();
     fetchAnswers();
-  }, []);
+  }, [question_id]);
 
   return (
     <div className={styles.wrapper}>
       <div className="container">
         <div className={`${styles.question} mb-5`}>
-          <h2 className="mb-3">QUESTION</h2>
+          <h2 className="mb-3 mt-4">QUESTION</h2>
           <div className={`${styles.title} mb-2 text`}>
             <span>
               <HiArrowCircleRight />
@@ -118,24 +111,29 @@ function PostAnswer() {
         <hr />
         <h1>Answer From The Community</h1>
         <hr />
-        <div className={`${styles.answerContainer} my-5 w-md-75 mx-auto`}>
-          {answers?.map((answer, i) => {
-            return (
-              <div key={i} className="row">
-                <div className="col-3 col-md-2 col-lg-1 user">
-                  <div className={styles.avatar}>
-                    <FaUser />
+        <div className={`${styles.answerContainer} my-5 w-md-75 mx-auto pt-4`}>
+          {answers.length === 0 ? (
+            <p>No answers yet. Be the first to answer!</p>
+          ) : (
+            answers?.map((answer, i) => {
+              return (
+                <div key={i} className="row">
+                  <div className="col-3 col-md-2 col-lg-1 user">
+                    <div className={styles.avatar}>
+                      <FaUser />
+                    </div>
+                    <div className={styles.username}>{answer.user_name}</div>
                   </div>
-                  <div className={styles.username}>{answer.user_name}</div>
+                  <div className="col-md-9 col-8 answer">
+                    <p>{answer.content}</p>
+                  </div>
+                  <hr className="w-75 mt-2" />
                 </div>
-                <div className="col-md-9 col-8">
-                  <p className="answer">{answer.content}</p>
-                </div>
-                <hr className="w-75 mt-2" />
-              </div>
-            );
-          })}
+              );
+            })
+          )}
         </div>
+
         <div className="post mx-auto w-md-75">
           <p className="text-success">{msg}</p>
           <form onSubmit={postAnswer}>

@@ -14,7 +14,6 @@ function Question() {
     if (!user) navigate("/");
   }, [user, navigate]);
 
-  //importing global state from context
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -26,7 +25,6 @@ function Question() {
     });
 
     try {
-      //sending data to be registered in database
       await axiosInstance.post("/api/question/", {
         title: form.title,
         description: form.description,
@@ -34,14 +32,12 @@ function Question() {
         user_id: user.user_name,
       });
 
-      //navigate to homepage once the question is posted
       navigate("/home");
     } catch (error) {
       console.log("problem ==>", error.response.data.msg);
     }
   };
 
-  // document.getElementById("email").value = userData.user?.display_name;
   return (
     <div className="container">
       <div className="good__questions">
@@ -51,21 +47,21 @@ function Question() {
         <div className="steps">
           <div className="line mx-1"></div>
 
-          <div className="flex">
+          <div className="dflex">
             <ArrowCircleRightIcon
               fontSize="small"
               style={{ color: "rgb(53, 53, 94)", fontSize: 16 }}
             />
             <p className="pt-3">Summerize your problems in a one-line-title.</p>
           </div>
-          <div className="flex">
+          <div className="dflex">
             <ArrowCircleRightIcon
               fontSize="small"
               style={{ color: "rgb(53, 53, 94)", fontSize: 16 }}
             />
             <p className="pt-3">Describe your problem in more detail.</p>
           </div>
-          <div className="flex">
+          <div className="dflex">
             <ArrowCircleRightIcon
               fontSize="small"
               style={{
@@ -77,7 +73,7 @@ function Question() {
               Describe what you tried and what you expected to happen.
             </p>
           </div>
-          <div className="flex">
+          <div className="dflex">
             <ArrowCircleRightIcon
               fontSize="small"
               style={{ color: "rgb(53, 53, 94)", fontSize: 16 }}

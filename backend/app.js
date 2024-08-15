@@ -1,6 +1,7 @@
 const express = require("express");
 const dbConnection = require("./dbConfig");
 require("dotenv").config();
+const path = require("path");
 const app = express();
 const PORT = process.env.PORT;
 const cors = require("cors");
@@ -27,6 +28,11 @@ app.use("/api/question", questionRoutes);
 
 // Answers routes middleware
 app.use("/api/answer", answerRoutes);
+
+// Catch-all handler for all other routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
 
 const start = async () => {
   try {

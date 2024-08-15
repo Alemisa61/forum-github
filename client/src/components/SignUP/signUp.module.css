@@ -1,6 +1,5 @@
 
 .sign_up_container {
-  
   width: 100%;
   max-width: 500px;
   position: relative;
@@ -17,9 +16,6 @@
   box-sizing: border-box;
 }
 
-/* .row {
-    margin: 0 auto;
-} */
 .upper_heading {
   margin-bottom: 30px;
 }
@@ -87,13 +83,12 @@
 }
 .item_password {
   position: relative;
-  /* padding-right: 22px; */
 }
 .password_toggle {
  position: absolute;
  padding-bottom: 10px;
   top: 50%;
-  right: 40px; /* Adjust this value as needed */
+  right: 40px;
   transform: translateY(-50%);
   cursor: pointer;
   z-index: 2;
@@ -119,12 +114,11 @@
   color: #da7000;
 }
 .sign_up_form div input {
-  border-bottom: 2px solid #ccc; /* Default bottom 
-  outline: none; /* Remove default focus outline */
+  border-bottom: 2px solid #ccc;
 }
 
 .sign_up_form div input:focus {
-  border-bottom: 2px solid orange; /* Orange bottom border color on focus */
+  border-bottom: 2px solid orange;
 }
 
  .sign_up_form .join_button:hover{
@@ -134,53 +128,53 @@
 @media (max-width: 768px) {
   .sign_up_container {
     padding: 20px; 
-    max-width: 740px;/* Ensure padding is adequate for smaller screens */
+    max-width: 740px;
   }
 
   .upper_heading {
-    margin-bottom: 20px; /* Adjusted margin for better spacing */
+    margin-bottom: 20px;
   }
 
   .upper_signin_button, .upper_signin_button a, .join_login {
-    font-size: 18px; /* Adjusted font size */
+    font-size: 18px;
   }
  
   .signin_button, .signin_button a {
-    font-size: 14px; /* Adjusted font size */
+    font-size: 14px;
   }
 
   .sign_up_form input {
     font-size: 12px;
-    padding: 20px; /* Adjusted font size */
+    padding: 20px; 
   }
 
   .join_button {
-    font-size: 1em; /* Adjusted font size */
-    padding: 10px 20px; /* Adjusted padding */
+    font-size: 1em;
+    padding: 10px 20px;
   }
 
   .lower_account_button a {
-    font-size: 18px; /* Adjusted font size */
+    font-size: 18px;
   }
 }
 
 @media (max-width: 480px) {
   .sign_up_container {
     padding: 10px; 
-    width: 479px;/* Further reduced padding */
+    width: 479px;
     box-sizing: border-box;
   }
 
   .upper_heading {
-    margin-bottom: 15px; /* Further adjusted margin */
+    margin-bottom: 15px;
   }
 
   .upper_signin_button, .upper_signin_button a, .join_login {
-    font-size: 14px; /* Further reduced font size */
+    font-size: 14px;
   }
 
   .signin_button, .signin_button a {
-    font-size: 8px; /* Further reduced font size */
+    font-size: 8px; 
   }
 
   .sign_up_form input {
@@ -199,6 +193,6 @@
   
 
   .lower_account_button a {
-    font-size: 16px; /* Further reduced font size */
+    font-size: 16px;
   }
 }

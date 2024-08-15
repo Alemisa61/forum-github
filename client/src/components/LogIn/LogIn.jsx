@@ -8,7 +8,6 @@ import { eye } from "react-icons-kit/feather/eye";
 import { AuthContext } from "../AuthContext/AuthContext";
 
 const LogIn = ({ onSwap }) => {
-  
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState(eyeOff);
   const [form, setForm] = useState({ email: "", password: "" });

@@ -3,15 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthContext/AuthContext";
 
 const NavLinks = () => {
-  const { token, clearToken, user } = useContext(AuthContext);
+  const { token, clearToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogoutClick = () => {
-    clearToken(); 
-    navigate("/"); 
+    clearToken();
+    navigate("/");
   };
 
-  // Determine if the user is authenticated based on the presence of the token
   const isAuthenticated = !!token;
 
   return (

@@ -6,7 +6,7 @@
   text-decoration: none;
 }
 
-.question .next_arrow {
+.single-question .next_arrow {
   font-size: 2.5rem;
   position: absolute;
   top: 20%;
@@ -16,10 +16,11 @@
 .welcome_message {
   font-size: 1.1rem;
   font-family: cursive;
+  color: #022553;
 }
 
 .welcome_message span {
-  color: rgb(254, 128, 130);
+  color: #0B5ED7;
   font-weight: 900;
   font-size: 1.3rem;
   padding: 2px 5px;
@@ -27,15 +28,12 @@
   background-color: rgb(249, 248, 247);
 }
 
-/* .questions_section .search_questions {
-  margin: 0px auto;
-} */
-
 .search_questions input {
   background-color: white;
-  margin: 15px auto;
+  margin: 20px auto;
   outline: none;
-  width: 95%;
+  width: 100%;
+  max-width: 1200px; 
   padding: 15px;
   border: 0.3px solid rgb(204, 204, 204);
   border-radius: 5px;
@@ -43,26 +41,31 @@
   font-family: monospace;
 }
 
-/* .question {
-  position: relative;
-  color: black;
-  text-decoration: none;
-  transition: transform 0.4s ease;
-} */
+.questions_section .container {
+  width: 100%; 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 0 15px; 
 
-.question {
-  position: relative;
-  color: black;
-  text-decoration: none;
-  transition: transform 0.2s ease; /* Reduced duration */
 }
 
-.question:hover {
-  transform: scale(1.02); /* Subtle pop-out effect */
+.single-question {
+  position: relative;
+ 
+  color: black;
+  padding: 15px;
+  text-decoration: none;
+  transition: transform 0.15s ease;
 }
 
-.question:hover {
-  transform: scale(1.02);
+.edit-question {
+    margin-top: 10px 0;
+    background-color: #0B5ED7;
+    color: #000;
+}
+.single-question:hover {
+  transform: scale(1.01);
+   background-color: #f5f5f5;
 }
 
 .profile_icon {
@@ -84,20 +87,21 @@
   transform: scale(1.1);
 }
 
-.user_name {
-  font-family: cursive;
-  margin: 10px 0px 0px 15px;
+.single-question .user_name {
+  font-family: 'Cursive', sans-serif;
+  margin: 30px;
   letter-spacing: 2px;
   color: black;
 }
 
-
-a {
+.questions_section a {
   color: black;
   text-decoration: none;
 }
 
-a:hover {
+.questions_section a:hover {
   text-decoration: none;
   transform: scale(1.02);
 }
+
+

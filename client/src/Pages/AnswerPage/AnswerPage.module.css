@@ -1,4 +1,4 @@
-.wrapper {
+.answer_wrapper {
   background-color: #fafafa;
   padding-top: 40px;
   padding-bottom: 50px;
@@ -61,4 +61,24 @@
 textarea {
   border: 0.5px solid #35355e;
   border-radius: 5px;
+}
+
+.answer-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+
+.answer-row .user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+
+.answer-row .answer {
+  display: flex;
+  align-items: center;
 }
