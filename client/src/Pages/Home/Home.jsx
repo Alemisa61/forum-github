@@ -116,22 +116,23 @@ return (
                 </div>
               </div>
             </Link>
-            <div className="row mt-2">
-              <div className="col-12 d-flex justify-content-end mb-5">
-                <button
-                  className="edit-question btn btn-link text-decoration-none"
-                  onClick={() => editQuestionHandler(question.question_id)}
-                >
-                  Edit <EditIcon />
-                </button>
+            {user.username === question.user_name && (
+              <div className="row mt-2">
+                <div className="col-12 d-flex justify-content-end mb-5">
+                  <button
+                    className="edit-question btn btn-link text-decoration-none"
+                    onClick={() => editQuestionHandler(question.question_id)}
+                  >
+                    Edit <EditIcon />
+                  </button>
+                </div>
               </div>
-              <hr className="w-75 mt-2"/>
-            </div>
+            )}
+            <hr className="mt-2" />
           </div>
         ))}
       </div>
 
-      {/* Pagination */}
       <div className="pagination-controls d-flex justify-content-center mt-5">
         {Array.from({ length: totalPages }, (_, index) => (
           <button
